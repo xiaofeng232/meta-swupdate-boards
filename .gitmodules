@@ -1,3 +1,0 @@
-[submodule "meta-raspberrypi"]
-	path = meta-raspberrypi
-	url = git@github.com:xiaofeng232/meta-raspberrypi.git

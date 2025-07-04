@@ -7,15 +7,15 @@ target:
   - core-image-base
 
 repos:
-  # 树莓派核心层（补充完整配置）
+  # taishan-yocto
   meta-raspberrypi:
-    url: https://github.com/agherzan/meta-raspberrypi.git  # 官方仓库
-    path: layers/meta-raspberrypi  # 统一放在layers目录下
-    refspec: scarthgap  # 与其他层保持分支一致
+    url: git@github.com:xiaofeng232/meta-raspberrypi.git
+    path: layers/meta-raspberrypi
+    refspec: scarthgap
 
-  # Poky基础层
+  # poky
   poky:
-    url: https://github.com/xiaofeng232/poky.git
+    url: git@github.com:xiaofeng232/poky.git
     path: layers/poky
     refspec: scarthgap
     layers:
@@ -23,9 +23,9 @@ repos:
       meta-poky:
       meta-yocto-bsp:
 
-  # 开源嵌入式层
+  # openembedded
   meta-openembedded:
-    url: https://github.com/xiaofeng232/meta-openembedded
+    url: git@github.com:xiaofeng232/meta-openembedded
     path: layers/meta-openembedded
     refspec: scarthgap
     layers:
@@ -34,9 +34,9 @@ repos:
       meta-networking:
       meta-perl:
 
-  # QT5支持层（修正分支为scarthgap，与其他层兼容）
+  #qt5
   meta-qt5:
-    url: https://github.com/xiaofeng232/meta-qt5/
+    url: git@github.com:xiaofeng232/meta-qt5/
     path: layers/meta-qt5
     refspec: scarthgap  # 原master分支可能不兼容，改为同版本分支
 
@@ -58,7 +58,7 @@ local_conf_header:
     SDKMACHINE = "x86_64"
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
-  raspberrypi-licenses: |  # 修正语法（原配置缺少|）
+  raspberrypi-licenses: | 
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
