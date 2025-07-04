@@ -1,0 +1,74 @@
+header:
+  version: 11  # 适配kas 4.7+
+
+machine: raspberrypi4
+distro: poky
+target:
+  - core-image-base
+
+repos:
+  # 树莓派核心层（补充完整配置）
+  meta-raspberrypi:
+    url: https://github.com/agherzan/meta-raspberrypi.git  # 官方仓库
+    path: layers/meta-raspberrypi  # 统一放在layers目录下
+    refspec: scarthgap  # 与其他层保持分支一致
+
+  # Poky基础层
+  poky:
+    url: https://github.com/xiaofeng232/poky.git
+    path: layers/poky
+    refspec: scarthgap
+    layers:
+      meta:
+      meta-poky:
+      meta-yocto-bsp:
+
+  # 开源嵌入式层
+  meta-openembedded:
+    url: https://github.com/xiaofeng232/meta-openembedded
+    path: layers/meta-openembedded
+    refspec: scarthgap
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
+      meta-perl:
+
+  # QT5支持层（修正分支为scarthgap，与其他层兼容）
+  meta-qt5:
+    url: https://github.com/xiaofeng232/meta-qt5/
+    path: layers/meta-qt5
+    refspec: scarthgap  # 原master分支可能不兼容，改为同版本分支
+
+# 明确层路径，确保bblayers.conf正确生成
+bblayers_conf_header:
+  standard: |
+    POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
+    # 自动包含所有repos中定义的层
+    BBLAYERS += "${@' '.join('${TOPDIR}/../%s' % repo for repo in d.getVar('BBLAYERS_REPOS').split())}"
+
+local_conf_header:
+  reduce_diskspace: |
+    INHERIT += "rm_work_and_downloads"
+  standard: |
+    CONF_VERSION = "2"
+    PACKAGE_CLASSES = "package_rpm"
+    SDKMACHINE = "x86_64"
+    USER_CLASSES = "buildstats"
+    PATCHRESOLVE = "noop"
+  raspberrypi-licenses: |  # 修正语法（原配置缺少|）
+    LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
+  debug-tweaks: |
+    EXTRA_IMAGE_FEATURES = "debug-tweaks"
+  diskmon: |
+    BB_DISKMON_DIRS = "\
+        STOPTASKS,${TMPDIR},1G,100K \
+        STOPTASKS,${DL_DIR},1G,100K \
+        STOPTASKS,${SSTATE_DIR},1G,100K \
+        STOPTASKS,/tmp,100M,100K \
+        HALT,${TMPDIR},100M,1K \
+        HALT,${DL_DIR},100M,1K \
+        HALT,${SSTATE_DIR},100M,1K \
+        HALT,/tmp,10M,1K"
