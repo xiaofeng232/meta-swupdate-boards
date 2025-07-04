@@ -25,7 +25,7 @@ repos:
 
   # openembedded
   meta-openembedded:
-    url: git@github.com:xiaofeng232/meta-openembedded
+    url: git@github.com:xiaofeng232/meta-openembedded.git
     path: layers/meta-openembedded
     refspec: scarthgap
     layers:
@@ -36,18 +36,15 @@ repos:
 
   #qt5
   meta-qt5:
-    url: git@github.com:xiaofeng232/meta-qt5/
+    url: git@github.com:xiaofeng232/meta-qt5.git
     path: layers/meta-qt5
-    refspec: scarthgap  # 原master分支可能不兼容，改为同版本分支
+    refspec: scarthgap
 
-# 明确层路径，确保bblayers.conf正确生成
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
     BBPATH = "${TOPDIR}"
     BBFILES ?= ""
-    # 自动包含所有repos中定义的层
-    BBLAYERS += "${@' '.join('${TOPDIR}/../%s' % repo for repo in d.getVar('BBLAYERS_REPOS').split())}"
 
 local_conf_header:
   reduce_diskspace: |
