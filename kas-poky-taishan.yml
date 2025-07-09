@@ -1,7 +1,7 @@
 header:
-  version: 11  # 适配kas 4.7+
+  version: 11
 
-machine: raspberrypi4
+machine: raspberrypi4-64
 distro: poky
 target:
   - core-image-base
