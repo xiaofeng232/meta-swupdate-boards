@@ -47,8 +47,12 @@ bblayers_conf_header:
     BBFILES ?= ""
 
 local_conf_header:
+  rpi-specific: |
+    ENABLE_I2C = "1"
+    RPI_EXTRA_CONFIG = "dtoverlay=disable-bt"
   reduce_diskspace: |
     INHERIT += "rm_work_and_downloads"
+    RM_WORK_MAX_PRESERVE = "0"
   standard: |
     CONF_VERSION = "2"
     PACKAGE_CLASSES = "package_rpm"
@@ -58,7 +62,7 @@ local_conf_header:
   raspberrypi-licenses: | 
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
   debug-tweaks: |
-    EXTRA_IMAGE_FEATURES = "debug-tweaks"
+    EXTRA_IMAGE_FEATURES = "debug-tweaks tools-sdk package-management"
   diskmon: |
     BB_DISKMON_DIRS = "\
         STOPTASKS,${TMPDIR},1G,100K \
