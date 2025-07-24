@@ -39,6 +39,9 @@ repos:
     url: git@github.com:xiaofeng232/meta-qt5.git
     path: layers/meta-qt5
     refspec: scarthgap
+  
+  meta-taishan:
+    path: ./meta-taishan
 
 bblayers_conf_header:
   standard: |
@@ -60,7 +63,6 @@ local_conf_header:
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
     PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-    TOOLCHAIN_TARGET_TASK:append = " populate_sdk_ext"
   raspberrypi-licenses: | 
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
   debug-tweaks: |
