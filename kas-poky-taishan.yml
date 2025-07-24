@@ -60,7 +60,7 @@ local_conf_header:
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
     PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
-    TOOLCHAIN_TARGET_TASK_append = " populate_sdk_ext"
+    TOOLCHAIN_TARGET_TASK:append = " populate_sdk_ext"
   raspberrypi-licenses: | 
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
   debug-tweaks: |
