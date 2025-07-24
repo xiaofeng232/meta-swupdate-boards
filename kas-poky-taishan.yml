@@ -62,7 +62,6 @@ local_conf_header:
     SDKMACHINE = "x86_64"
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
-    PREFERRED_PROVIDER_virtual/kernel = "linux-yocto-rt"
     IMAGE_FSTYPES = "ext4.xz rpi-sdimg"
     SDIMGE_ROOTFS_TYPE = "ext4.xz"
   raspberrypi-licenses: | 
