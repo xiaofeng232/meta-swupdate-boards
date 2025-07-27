@@ -1,10 +1,10 @@
 header:
-  version: 8
+  version: 11
 
 machine: qemux86-64
-distro: poky
+DISTRO: poky
 target:
-  - core-image-base
+  - core-image-sato
 
 repos:
 
@@ -16,8 +16,6 @@ repos:
       meta:
       meta-poky:
       meta-yocto-bsp:
-  meta-taishan:
-    path: meta-taishan
 
 bblayers_conf_header:
   standard: |
@@ -25,18 +23,16 @@ bblayers_conf_header:
     BBPATH = "${TOPDIR}"
     BBFILES ?= ""
 local_conf_header:
-  reduce_diskspace: |
-    INHERIT += "rm_work_and_downloads"
   standard: |
     CONF_VERSION = "2"
-    PACKAGE_CLASSES = "package_rpm"
-    SDKMACHINE = "x86_64"
-    USER_CLASSES = "buildstats"
+    EXTRA_IMAGE_FEATURES ?= "debug-tweaks"
+    USER_CLASSES ?= "buildstats"
     PATCHRESOLVE = "noop"
-  debug-tweaks: |
-    EXTRA_IMAGE_FEATURES = "debug-tweaks"
+    PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
+    CONF_VERSION = "2"
+
   diskmon: |
-    BB_DISKMON_DIRS = "\
+    BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \
         STOPTASKS,${DL_DIR},1G,100K \
         STOPTASKS,${SSTATE_DIR},1G,100K \
