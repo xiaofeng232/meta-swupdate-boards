@@ -1,27 +1,36 @@
 header:
-  version: 11
+  version: 16
 
 machine: qemux86-64
-DISTRO: poky
+distro: poky
 target:
   - core-image-sato
 
 repos:
-
   poky:
-    url: git://git.yoctoproject.org/poky.git
+    url: https://git.yoctoproject.org/poky
     path: layers/poky
-    refspec: scarthgap
+    branch: scarthgap
     layers:
       meta:
       meta-poky:
       meta-yocto-bsp:
+
+  meta-openembedded:
+    url: https://git.openembedded.org/meta-openembedded
+    path: layers/meta-openembedded
+    branch: scarthgap
+    layers:
+      meta-oe:
+      meta-python:
+      meta-networking:
 
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
     BBPATH = "${TOPDIR}"
     BBFILES ?= ""
+
 local_conf_header:
   standard: |
     CONF_VERSION = "2"
@@ -29,9 +38,8 @@ local_conf_header:
     USER_CLASSES ?= "buildstats"
     PATCHRESOLVE = "noop"
     PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
-    CONF_VERSION = "2"
-
-  diskmon: |
+    PTEST_ENABLED_curl = "0"
+    
     BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \
         STOPTASKS,${DL_DIR},1G,100K \
