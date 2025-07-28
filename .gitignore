@@ -5,5 +5,4 @@ build*
 *.rej
 *.log
 docs/_build
-layers*
 *.pyc
