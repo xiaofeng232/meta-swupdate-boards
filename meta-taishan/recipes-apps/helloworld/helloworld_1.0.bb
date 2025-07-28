@@ -2,6 +2,9 @@ SUMMARY = "Hello World Example"
 DESCRIPTION = "A simple Hello World application for demonstration purposes."
 LICENSE = "CLOSED"
 
+PV= "1.0"
+PR = "r0"
+
 SRC_URI = " \
     file://helloworld.c \
     file://goodbye.c \
