@@ -2,7 +2,7 @@ header:
   version: 8
 
 machine: qemux86-64
-distro: poky
+distro: taishan
 target:
   - core-image-base
 
@@ -35,15 +35,13 @@ repos:
     branch: scarthgap
 
   meta-swupdate:
-    url: https://github.com/xiaofeng232/meta-swupdate.git
+    url: https://github.com/xiaofeng232/meta-swupdate
     path: layers/meta-swupdate
     branch: scarthgap
 
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
-    BBPATH = "${TOPDIR}"
-    BBFILES ?= ""
 local_conf_header:
   reduce_diskspace: |
     INHERIT += "rm_work_and_downloads"
