@@ -2,9 +2,9 @@ header:
   version: 8
 
 machine: qemux86-64
-distro: taishan
+distro: poky
 target:
-  - core-image-base
+  - core-image-full-cmdline
 
 repos:
   meta-taishan:
@@ -45,16 +45,16 @@ bblayers_conf_header:
 local_conf_header:
   reduce_diskspace: |
     INHERIT += "rm_work_and_downloads"
+    RM_DL_DIR = "0"
   standard: |
     CONF_VERSION = "2"
-    PACKAGE_CLASSES = "package_rpm"
-    SDKMACHINE = "x86_64"
-    USER_CLASSES = "buildstats"
+    USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
+    PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
-    BB_DISKMON_DIRS = "\
+    BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \
         STOPTASKS,${DL_DIR},1G,100K \
         STOPTASKS,${SSTATE_DIR},1G,100K \
