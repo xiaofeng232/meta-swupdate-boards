@@ -39,6 +39,11 @@ repos:
     path: layers/meta-swupdate
     branch: scarthgap
 
+  # meta-raspberrypi:
+  #   url: https://github.com/agherzan/meta-raspberrypi
+  #   path: layers/meta-raspberrypi
+  #   branch: scarthgap 
+
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
@@ -51,7 +56,13 @@ local_conf_header:
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
     PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
-    PACKAGE_CLASSES = "package_ipk"
+    IMAGE_INSTALL += " opkg"
+    PACKAGE_FEED_URIS = "http://repo.opkg.net/edison/repo/all"
+
+    IMAGE_INSTALL:append = " swupdate swupdate-www"
+    IMAGE_INSTALL:append = " openssh-sftp-server"
+    IMAGE_ROOTFS_SIZE = "2048000"
+
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
