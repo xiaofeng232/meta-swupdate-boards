@@ -51,6 +51,7 @@ local_conf_header:
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
     PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
+    PACKAGE_CLASSES = "package_ipk"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
