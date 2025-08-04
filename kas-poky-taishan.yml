@@ -56,12 +56,7 @@ local_conf_header:
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
     PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
-    IMAGE_INSTALL += " opkg"
-    PACKAGE_FEED_URIS = "http://repo.opkg.net/edison/repo/all"
 
-    IMAGE_INSTALL:append = " swupdate swupdate-www"
-    IMAGE_INSTALL:append = " openssh-sftp-server"
-    IMAGE_ROOTFS_SIZE = "2048000"
 
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
