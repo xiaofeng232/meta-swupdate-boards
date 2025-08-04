@@ -4,7 +4,7 @@ header:
 machine: qemux86-64
 distro: poky
 target:
-  - core-image-base
+  - core-image-sato
 
 repos:
   meta-taishan:
@@ -35,28 +35,33 @@ repos:
     branch: scarthgap
 
   meta-swupdate:
-    url: https://github.com/xiaofeng232/meta-swupdate.git
+    url: https://github.com/xiaofeng232/meta-swupdate
     path: layers/meta-swupdate
     branch: scarthgap
+
+  # meta-raspberrypi:
+  #   url: https://github.com/agherzan/meta-raspberrypi
+  #   path: layers/meta-raspberrypi
+  #   branch: scarthgap 
 
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
-    BBPATH = "${TOPDIR}"
-    BBFILES ?= ""
 local_conf_header:
   reduce_diskspace: |
     INHERIT += "rm_work_and_downloads"
+    RM_DL_DIR = "0"
   standard: |
     CONF_VERSION = "2"
-    PACKAGE_CLASSES = "package_rpm"
-    SDKMACHINE = "x86_64"
-    USER_CLASSES = "buildstats"
+    USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
+    PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
+
+
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
-    BB_DISKMON_DIRS = "\
+    BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \
         STOPTASKS,${DL_DIR},1G,100K \
         STOPTASKS,${SSTATE_DIR},1G,100K \
