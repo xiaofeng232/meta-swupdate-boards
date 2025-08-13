@@ -1,7 +1,7 @@
 header:
   version: 8
 
-machine: qemux86-64
+machine: raspberrypi4-64
 distro: poky
 target:
   - core-image-sato
@@ -39,10 +39,10 @@ repos:
     path: layers/meta-swupdate
     branch: scarthgap
 
-  # meta-raspberrypi:
-  #   url: https://github.com/agherzan/meta-raspberrypi
-  #   path: layers/meta-raspberrypi
-  #   branch: scarthgap 
+  meta-raspberrypi:
+    url: git@github.com:xiaofeng232/meta-raspberrypi.git
+    path: layers/meta-raspberrypi
+    branch: scarthgap 
 
 bblayers_conf_header:
   standard: |
@@ -56,8 +56,8 @@ local_conf_header:
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
     PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
-
-
+    LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
+    IMAGE_INSTALL:append = " openssh"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |

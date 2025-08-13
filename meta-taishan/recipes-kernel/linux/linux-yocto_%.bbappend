@@ -5,4 +5,4 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
 # KERNEL_DEVICETREE = "qemux86-64-gpio.dtb"
 
 # 若需保留原有设备树，使用 += 追加
-KERNEL_DEVICETREE += "qemux86-64-gpio.dtb"
+# KERNEL_DEVICETREE += "qemux86-64-gpio.dtb"
