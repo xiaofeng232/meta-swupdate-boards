@@ -1,10 +1,10 @@
 header:
   version: 8
 
-machine: qemux86-64
+machine: raspberrypi4-64
 distro: poky
 target:
-  - core-image-base
+  - taishan-image
 
 repos:
   meta-taishan:
@@ -29,13 +29,8 @@ repos:
       meta-networking:
       meta-perl:
 
-  meta-qt5:
-    url: https://github.com/meta-qt5/meta-qt5/
-    path: layers/meta-qt5
-    branch: scarthgap
-
   meta-raspberrypi:
-    url: git@github.com:xiaofeng232/meta-raspberrypi.git
+    url: git@github.com:xiaofeng232/meta-raspberrypi
     path: layers/meta-raspberrypi
     branch: scarthgap
 
@@ -43,6 +38,7 @@ bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
 local_conf_header:
+  network_check: |
   reduce_diskspace: |
     INHERIT += "rm_work_and_downloads"
     RM_DL_DIR = "0"
