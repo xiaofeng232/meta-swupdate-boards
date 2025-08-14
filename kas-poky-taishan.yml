@@ -39,12 +39,6 @@ repos:
     path: layers/meta-raspberrypi
     branch: scarthgap
 
-  meta-nilrt:
-    url: git@github.com:xiaofeng232/meta-nilrt.git
-    path: layers/meta-nilrt
-    branch: nilrt/master/scarthgap
-
-
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
