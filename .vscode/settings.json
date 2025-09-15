@@ -10,5 +10,6 @@
     "files.associations": {
         "*.conf": "bitbake",
         "*.inc": "bitbake"
-    }
+    },
+    "bitbake.disableConfigModification": false
 }
