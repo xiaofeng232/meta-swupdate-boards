@@ -11,7 +11,7 @@ repos:
     path: meta-taishan
 
   poky:
-    url: https://git.yoctoproject.org/git/poky
+    url: git@github.com:xiaofeng232/poky.git
     path: layers/poky
     branch: scarthgap
     layers:
@@ -20,7 +20,7 @@ repos:
       meta-yocto-bsp:
 
   meta-openembedded:
-    url: http://git.openembedded.org/meta-openembedded
+    url: git@github.com:xiaofeng232/meta-openembedded.git
     path: layers/meta-openembedded
     branch: scarthgap
     layers:
