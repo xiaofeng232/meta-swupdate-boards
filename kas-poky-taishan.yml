@@ -4,7 +4,7 @@ header:
 machine: taishan-64
 distro: poky
 target:
-  - rpi-test-image
+  - i
 
 repos:
   meta-taishan:

@@ -4,7 +4,7 @@ header:
 machine: qemux86-64
 distro: poky
 target:
-  - rpi-test-image
+  - core-image-base
 
 repos:
   meta-taishan:
@@ -54,6 +54,7 @@ local_conf_header:
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
     VIRTUAL-RUNTIME_initscripts = ""
+    DL_DIR = "${BSPDIR}/downloads/"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
