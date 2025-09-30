@@ -4,7 +4,7 @@ header:
 machine: raspberrypi4-64
 distro: poky
 target:
-  - taishan-image
+  - rpi-test-image
 
 repos:
   meta-taishan:
@@ -43,11 +43,17 @@ local_conf_header:
     INHERIT += "rm_work_and_downloads"
     RM_DL_DIR = "0"
   standard: |
+    ENABLE_UART = "1"
     CONF_VERSION = "2"
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
     PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
+    IMAGE_INSTALL:append = " openssh openssh-sftp-server"
+    DISTRO_FEATURES:append = " systemd usrmerge"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
+    VIRTUAL-RUNTIME_initscripts = ""
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
