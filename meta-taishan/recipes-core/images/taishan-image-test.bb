@@ -1,4 +1,4 @@
-require recipes-core/images/core-image-base.bb
+include recipes-core/images/core-image-base.bb
 SUMMARY = "a taishan image"
 
 IMAGE_FEATURES += "package-management"
