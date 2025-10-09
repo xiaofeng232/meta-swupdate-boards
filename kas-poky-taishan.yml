@@ -4,7 +4,7 @@ header:
 machine: taishan-64
 distro: poky
 target:
-  - i
+  - taishan-image-base
 
 repos:
   meta-taishan:

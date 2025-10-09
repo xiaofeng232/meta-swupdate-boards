@@ -1,4 +1,5 @@
-require recipes-core/images/rpi-test-image.bb
+# require recipes-core/images/rpi-test-image.bb
+require recipes-core/images/core-image-base.bb
 SUMMARY = "a taishan image"
 
 IMAGE_FEATURES += "package-management"

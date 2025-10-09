@@ -4,7 +4,7 @@ header:
 machine: qemux86-64
 distro: poky
 target:
-  - core-image-base
+  - taishan-image-base
 
 repos:
   meta-taishan:
@@ -38,7 +38,6 @@ bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
 local_conf_header:
-  network_check: |
   reduce_diskspace: |
     INHERIT += "rm_work_and_downloads"
     RM_DL_DIR = "0"
