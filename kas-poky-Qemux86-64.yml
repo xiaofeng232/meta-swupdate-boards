@@ -4,7 +4,7 @@ header:
 machine: qemux86-64
 distro: poky
 target:
-  - taishan-image-test
+  - taishan-test-image
 
 repos:
   meta-taishan:

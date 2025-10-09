@@ -1,10 +1,10 @@
 header:
   version: 8
 
-machine: taishan-64
+machine: raspberrypi4-64
 distro: poky
 target:
-  - taishan-image-base
+  - taishan-base-image
 
 repos:
   meta-taishan:
