@@ -45,8 +45,6 @@ bblayers_conf_header:
 local_conf_header:
   network_check: |
   reduce_diskspace: |
-    INHERIT += "rm_work_and_downloads"
-    RM_DL_DIR = "0"
   standard: |
     ENABLE_UART = "1"
     CONF_VERSION = "2"

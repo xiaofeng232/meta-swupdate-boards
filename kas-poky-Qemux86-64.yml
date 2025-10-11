@@ -39,8 +39,6 @@ bblayers_conf_header:
     POKY_BBLAYERS_CONF_VERSION = "2"
 local_conf_header:
   reduce_diskspace: |
-    INHERIT += "rm_work_and_downloads"
-    RM_DL_DIR = "0"
   standard: |
     ENABLE_UART = "1"
     CONF_VERSION = "2"
