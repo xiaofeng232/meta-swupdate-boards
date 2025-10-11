@@ -38,6 +38,11 @@ repos:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     branch: scarthgap
+  
+  meta-swupdate-boards:
+    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
+    path: layers/meta-swupdate-boards
+    branch: scarthgap
 
 bblayers_conf_header:
   standard: |
@@ -57,8 +62,9 @@ local_conf_header:
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
     VIRTUAL-RUNTIME_initscripts = ""
-    RPI_USE_U_BOOT ="1"
-    IMAGE_FSTYPES = "ext4.gz"
+    RPI_USE_U_BOOT = "1"
+    IMAGE_FSTYPES = "rpi-sdimg ext4.gz"
+    PREFERRED_PROVIDER_u-boot-fw-utils = "libubootenv"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
