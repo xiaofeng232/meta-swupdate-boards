@@ -1,0 +1,15 @@
+[Unit]
+Description=SWUpdate Web Interface Service
+After=network.target  # 网络就绪后启动，确保IP已配置
+Wants=network-online.target  # 依赖网络在线状态
+
+[Service]
+Type=simple
+# 启动命令：启用Web服务，指定网页文件目录（swupdate-www默认安装路径）和端口
+ExecStart=/usr/bin/swupdate -w "--document-root /usr/share/swupdate/www --port 8080"
+Restart=always  # 服务崩溃时自动重启
+RestartSec=5    # 重启间隔5秒
+User=root       # 需root权限操作硬件和文件系统
+
+[Install]
+WantedBy=multi-user.target  # 多用户模式下自启动

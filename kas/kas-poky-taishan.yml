@@ -38,11 +38,6 @@ repos:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     branch: scarthgap
-  
-  meta-swupdate-boards:
-    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
-    path: layers/meta-swupdate-boards
-    branch: scarthgap
 
 bblayers_conf_header:
   standard: |
@@ -55,16 +50,13 @@ local_conf_header:
     CONF_VERSION = "2"
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
-    PACKAGECONFIG:append:pn-qemu-system-native = " sdl"
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
     IMAGE_INSTALL:append = " openssh openssh-sftp-server"
     DISTRO_FEATURES:append = " systemd usrmerge"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
     VIRTUAL-RUNTIME_initscripts = ""
-    RPI_USE_U_BOOT = "1"
-    IMAGE_FSTYPES = "rpi-sdimg ext4.gz"
-    PREFERRED_PROVIDER_u-boot-fw-utils = "libubootenv"
+    IMAGE_FSTYPES:append = " ext4"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
