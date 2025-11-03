@@ -3,11 +3,9 @@ SUMMARY = "a taishan image"
 
 IMAGE_FEATURES += "package-management"
 PACKAGE_CLASSES = "package_dpkg"
-LINUX_KERNEL_TYPE = "preempt-rt"
+INIT_MANAGER = "systemd"
+
 
 
 IMAGE_INSTALL:append = " libgpiod libgpiod-dev libgpiod-tools curl net-tools"
 IMAGE_INSTALL:append = " u-boot-fw-utils libubootenv"
-IMAGE_INSTALL:append = " \
-    swupdate-www-service \
-"
