@@ -30,17 +30,17 @@ repos:
       meta-perl:
 
   meta-raspberrypi:
-    url: git@github.com:xiaofeng232/meta-raspberrypi
+    url: git@github.com:xiaofeng232/meta-raspberrypi.git
     path: layers/meta-raspberrypi
     branch: scarthgap
 
   meta-swupdate:
-    url: git@github.com:xiaofeng232/meta-swupdate
+    url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     branch: scarthgap
 
   meta-swupdate-boards:
-    url: git@github.com:xiaofeng232/meta-swupdate-boards
+    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
     branch: scarthgap
 
@@ -52,7 +52,6 @@ local_conf_header:
     RPI_USE_U_BOOT = "1"
     PATCHRESOLVE = "noop"
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
-    IMAGE_INSTALL:append = " openssh openssh-sftp-server"
     DISTRO_FEATURES:append = " systemd"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
@@ -60,7 +59,9 @@ local_conf_header:
     DISTRO_FEATURES:append = " usrmerge"
     IMAGE_FSTYPES += " ext4 ext4.gz wic"
   debug-tweaks: |
-    EXTRA_IMAGE_FEATURES = "debug-tweaks"
+    IMAGE_INSTALL:append = " swupdate swupdate-www"
+    IMAGE_INSTALL:append = " openssh openssh-sftp-server"
+    EXTRA_IMAGE_FEATURES += "debug-tweaks"
   diskmon: |
     BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \

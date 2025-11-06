@@ -30,7 +30,7 @@ repos:
       meta-perl:
 
   meta-raspberrypi:
-    url: git@github.com:xiaofeng232/meta-raspberrypi
+    url: git@github.com:xiaofeng232/meta-raspberrypi.git
     path: layers/meta-raspberrypi
     branch: scarthgap
 
@@ -39,7 +39,7 @@ repos:
     path: layers/meta-swupdate
     branch: scarthgap
 
-  meta-swupdate:
+  meta-swupdate-boards:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
     branch: scarthgap
@@ -62,7 +62,7 @@ local_conf_header:
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
     VIRTUAL-RUNTIME_initscripts = ""
-    IMAGE_FSTYPES:append = " ext4"
+    IMAGE_FSTYPES += " ext4 ext4.gz wic"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |

@@ -4,7 +4,7 @@ set -e  # Exit immediately on error
 # ==============================================
 # Configuration parameters (modify as needed)
 # ==============================================
-WIC_IMAGE_PATH="build/tmp/deploy/images/raspberrypi4-64/core-image-base-raspberrypi4-64.rootfs.wic"  # Path to WIC image
+WIC_IMAGE_PATH="build/tmp/deploy/images/raspberrypi4-64/taishan-base-image.rootfs.wic"  # Path to WIC image
 SDCARD_DEVICE=""  # Auto-detected; no manual input needed
 
 
