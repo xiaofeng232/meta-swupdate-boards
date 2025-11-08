@@ -7,8 +7,6 @@ target:
   - rpi-test-image
 
 repos:
-  meta-taishan:
-    path: meta-taishan
 
   poky:
     url: git@github.com:xiaofeng232/poky.git
@@ -38,17 +36,11 @@ repos:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     branch: scarthgap
-  # meta-swupdate-boards:
-  #   url: git@github.com:xiaofeng232/meta-swupdate-boards.git
-  #   path: layers/meta-swupdate-boards
-  #   branch: scarthgap
 
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
 local_conf_header:
-  network_check: |
-  reduce_diskspace: |
   standard: |
     ENABLE_UART = "1"
     CONF_VERSION = "2"
