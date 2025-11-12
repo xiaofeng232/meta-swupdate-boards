@@ -37,18 +37,24 @@ repos:
     path: layers/meta-swupdate
     branch: scarthgap
 
+  meta-taishan:
+    url: git@github.com:xiaofeng232/meta-taishan.git
+    path: layers/meta-taishan
+    branch: scarthgap
+
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
 local_conf_header:
   standard: |
+    INHERIT += "buildhistory"
+    BUILDHISTORY_COMMIT = "1"
     ENABLE_UART = "1"
     CONF_VERSION = "2"
     RPI_USE_U_BOOT = "1"
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
-    IMAGE_INSTALL:append = " openssh openssh-sftp-server"
     DISTRO_FEATURES:append = " systemd usrmerge"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
