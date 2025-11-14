@@ -72,3 +72,8 @@ local_conf_header:
         HALT,${DL_DIR},100M,1K \
         HALT,${SSTATE_DIR},100M,1K \
         HALT,/tmp,10M,1K"
+  base: |
+    SSTATE_MIRRORS = "file://.* http://cdn.jsdelivr.net/yocto/sstate/all/PATH;downloadfilename=PATH"
+    PREMIRRORS:prepend = "https?://.*/.* http://mirrors.ustc.edu.cn/yocto/downloads/ \n"
+    PARALLEL_MAKE = "-j12"
+    BB_NUMBER_THREADS = "12"
