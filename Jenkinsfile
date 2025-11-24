@@ -1,206 +1,107 @@
-// Jenkinsfile (放在 GitHub 仓库根目录)
 pipeline {
-    agent any
+    agent { node { label 'big-node' } }
 
-    triggers {
-        githubPush()  // GitHub push 触发
-    }
-
+    // 资源限制：防止多任务并发导致系统崩溃
     options {
-        timeout(time: 4, unit: 'HOURS')
-        buildDiscarder(logRotator(numToKeepStr: '10'))
+        throttleJobProperty(
+            categories: ['heavy_job'],
+            throttleEnabled: true,
+            throttleOption: 'category'
+        )
+        timeout(time: 8, unit: 'HOURS') // Yocto 构建可能耗时数小时
+        buildDiscarder(logRotator(numToKeepStr: '20')) // 保留最近20次构建
     }
 
     environment {
-        // GitHub 凭据
-        GITHUB_TOKEN = credentials('github-pat')
-        // Yocto 构建参数
-        MACHINE = 'raspberrypi4-64'
-        KAS_FILE = 'kas/kas-poky-taishan.yml'
-        SSTATE_DIR = '/sstate-cache'
-        DL_DIR = '/downloads'
-        // 并行构建
-        BB_NUMBER_THREADS = '16'
-        PARALLEL_MAKE = '-j16'
+        YOCTO_BRANCH = 'kirkstone'
+        DL_DIR = '/home/xiaofeng/Workspace/yocto-taishan/build/downloads'
+        SSTATE_DIR = '/home/xiaofeng/Workspace/yocto-taishan/build/sstate-cache'
     }
 
     stages {
-        stage('检出代码') {
+        stage('Checkout Yocto Project') {
             steps {
-                checkout scmGit(
-                    branches: [[name: '*/${BRANCH_NAME}']],
-                    extensions: [
-                        cleanBeforeCheckout(),
-                        pruneStaleBranches()
-                    ],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/xiaofeng232/yocto-taishan.git',
-                        credentialsId: 'github-pat'
-                    ]]
-                )
+                git branch: "${YOCTO_BRANCH}",
+                    credentialsId: 'gitlab-pat',
+                    poll: false, // 禁用轮询，依赖 Webhook 触发
+                    url: 'https://github.com/xiaofeng232/yocto-taishan.git'
             }
         }
 
-        stage('环境检查') {
+        stage('Build Production Image') {
             steps {
                 sh '''
-                    echo "=== 检查 GitHub 连接 ==="
-                    git remote -v
+                    # 传递构建号到 BitBake
+                    export BB_ENV_EXTRAWHITE="${BB_ENV_EXTRAWHITE} BUILD_NUMBER"
 
-                    echo "=== 检查磁盘空间 ==="
-                    df -h .
+                    # 初始化构建环境
+                    source layers/poky/oe-init-build-env
 
-                    echo "=== 检查 sstate 缓存 ==="
-                    ls -lh ${SSTATE_DIR} || echo "sstate 缓存为空"
+                    # 设置共享缓存（必须，否则每次构建都重新下载）
+                    echo "DL_DIR = '${env.DL_DIR}'" >> conf/local.conf
+                    echo "SSTATE_DIR = '${env.SSTATE_DIR}'" >> conf/local.conf
+
+                    # 执行完整镜像构建
+                    bitbake my-company-image
                 '''
             }
         }
 
-        stage('主镜像构建') {
-            steps {
-                sh """
-                    # 清理锁文件
-                    find . -name "*.lock" -delete 2>/dev/null || true
-
-                    # 执行构建
-                    ./scripts/Gen-yocto-taishan
-                """
-            }
-            post {
-                failure {
-                    sh "echo '构建失败，查看日志: ${BUILD_URL}console'"
-                }
-            }
-        }
-
-        stage('生成 SDK') {
-            when {
-                anyOf {
-                    branch 'main'
-                    branch 'release/*'
-                }
-            }
-            steps {
-                sh """
-                    cd build
-                    kas shell ${KAS_FILE} -c "bitbake -c populate_sdk core-image-minimal"
-                """
-            }
-        }
-
-        stage('构建 SWU 更新包') {
-            steps {
-                sh """
-                    kas build kas/kas-poky-swupdate.yml
-                """
-            }
-        }
-
-        stage('上传制品到 GitHub Packages') {
-            when {
-                branch 'main'
-            }
+        stage('Build Recovery Image') {
             steps {
                 sh '''
-                    # 设置 GitHub 凭据
-                    echo "${GITHUB_TOKEN}" | docker login ghcr.io -u ${GITHUB_USERNAME} --password-stdin
-
-                    # 创建容器镜像并推送
-                    cd build/tmp/deploy/images/${MACHINE}
-                    tar -cvf yocto-image.tar core-image-minimal-raspberrypi4-64.wic.bz2
-                    docker import yocto-image.tar ghcr.io/${GITHUB_USERNAME}/yocto-image:${BUILD_NUMBER}
-                    docker push ghcr.io/${GITHUB_USERNAME}/yocto-image:${BUILD_NUMBER}
+                    export BB_ENV_EXTRAWHITE="${BB_ENV_EXTRAWHITE} BUILD_NUMBER"
+                    source layers/poky/oe-init-build-env
+                    bitbake my-recovery-image
                 '''
             }
         }
 
-        stage('自动化测试') {
-            parallel {
-                stage('QEMU 启动测试') {
-                    steps {
-                        sh '''
-                            cd build
-                            kas shell ${KAS_FILE} -c "runqemu ${MACHINE} nographic slirp qemuparams='-m 512'"
-                        '''
-                    }
-                }
-                stage('静态分析') {
-                    steps {
-                        sh """
-                            # 检查层依赖
-                            kas check ${KAS_FILE}
-
-                            # 生成许可证报告
-                            cd build
-                            bitbake -c report_license core-image-minimal
-                        """
-                    }
-                }
+        stage('Generate SDK') {
+            steps {
+                sh '''
+                    export BB_ENV_EXTRAWHITE="${BB_ENV_EXTRAWHITE} BUILD_NUMBER"
+                    source layers/poky/oe-init-build-env
+                    bitbake my-company-image -c populate_sdk
+                '''
             }
         }
 
-        stage('更新 GitHub 状态') {
+        stage('Archive Artifacts') {
             steps {
-                githubNotify(
-                    status: 'SUCCESS',
-                    description: "构建成功: ${BUILD_NUMBER}",
-                    context: 'Jenkins/Yocto-Build'
-                )
-            }
-            post {
-                failure {
-                    githubNotify(
-                        status: 'FAILURE',
-                        description: "构建失败: ${BUILD_NUMBER}",
-                        context: 'Jenkins/Yocto-Build'
-                    )
-                }
+                // 归档镜像和 SDK
+                archiveArtifacts artifacts: 'build/tmp/deploy/images/**/*.wic.xz',
+                                 fingerprint: true
+                archiveArtifacts artifacts: 'build/tmp/deploy/sdk/*.sh',
+                                 fingerprint: true
             }
         }
 
-        stage('归档制品') {
+        stage('Trigger HIL Testing') {
             steps {
-                script {
-                    def imageDir = "build/tmp/deploy/images/${MACHINE}"
-
-                    // 归档 WIC 镜像
-                    archiveArtifacts artifacts: "${imageDir}/*.wic.bz2", fingerprint: true
-
-                    // 归档 SWU 更新包
-                    archiveArtifacts artifacts: "${imageDir}/*.swu", allowEmptyArchive: true
-
-                    // 归档 SDK
-                    archiveArtifacts artifacts: "build/tmp/deploy/sdk/*.sh", allowEmptyArchive: true
-
-                    // 归档许可证和清单
-                    archiveArtifacts artifacts: "${imageDir}/*-license.json", allowEmptyArchive: true
-                    archiveArtifacts artifacts: "${imageDir}/*.manifest", allowEmptyArchive: true
-                }
+                // 调用硬件在环测试框架
+                build job: 'HIL-Testing-Pipeline',
+                      parameters: [
+                          string(name: 'IMAGE_VERSION', value: "${BUILD_NUMBER}"),
+                          string(name: 'IMAGE_PATH', value: "${WORKSPACE}/build/tmp/deploy/images/my-machine/my-company-image.wic.xz")
+                      ]
             }
         }
     }
 
     post {
-        always {
-            // 清理工作空间
-            cleanWs()
-        }
-
         success {
-            // 在 GitHub 提交状态添加评论
-            sh """
-                curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
-                  https://api.github.com/repos/${GITHUB_REPO}/commits/${GIT_COMMIT}/comments \
-                  -d '{"body":"✅ **Jenkins 构建成功**\\n构建号: ${BUILD_NUMBER}\\n镜像: `${MACHINE}`"}'
-            """
+            echo "✅ Build #${BUILD_NUMBER} completed successfully!"
+            // 发送通知到 Slack/Teams
         }
-
         failure {
-            sh """
-                curl -X POST -H "Authorization: token ${GITHUB_TOKEN}" \
-                  https://api.github.com/repos/${GITHUB_REPO}/commits/${GIT_COMMIT}/comments \
-                  -d '{"body":"❌ **Jenkins 构建失败**\\n构建号: ${BUILD_NUMBER}\\n查看日志: ${BUILD_URL}console"}'
-            """
+            echo "❌ Build #${BUILD_NUMBER} failed!"
+            // 归档失败日志
+            archiveArtifacts artifacts: 'build/tmp/log/**/*.log', allowEmptyArchive: true
+        }
+        always {
+            // 清理工作空间（可选，节省磁盘空间）
+            cleanWs()
         }
     }
 }
