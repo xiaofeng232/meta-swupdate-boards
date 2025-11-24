@@ -1,6 +1,7 @@
 # yocto-taishan
 [raspberrypi](https://meta-raspberrypi.readthedocs.io/en/latest)
 ## Quick links
+
 ## Description
 ## Dependencies
 ## Quick Start
@@ -18,9 +19,15 @@ T
 
 
 ## Task
--- 生成镜像
+-- 生成镜像[OK]
 -- OTA/多设备镜像同步
 -- LINUX RT
--- EtherCAT
 -- MB
 -- CAN
+-- EtherCAT
+
+# SDK
+bitbake taishan-base-image -c populate_sdk
+bitbake taishan-base-image -c populate_sdk_ext
+
+# Scripts
