@@ -1,11 +1,6 @@
 // Jenkinsfile (放在 GitHub 仓库根目录)
 pipeline {
-    agent {
-        docker {
-            image 'crops/poky:ubuntu-22.04'
-            args '-v /mnt/sstate-cache:/sstate-cache -v /mnt/downloads:/downloads'
-        }
-    }
+    agent any
 
     triggers {
         githubPush()  // GitHub push 触发
@@ -39,7 +34,7 @@ pipeline {
                         pruneStaleBranches()
                     ],
                     userRemoteConfigs: [[
-                        url: 'https://github.com/your-org/yocto-taishan.git',
+                        url: 'https://github.com/xiaofeng232/yocto-taishan.git',
                         credentialsId: 'github-pat'
                     ]]
                 )
