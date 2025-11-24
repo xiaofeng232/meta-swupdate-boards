@@ -1,15 +1,13 @@
 pipeline {
     agent { node { label 'big-node' } }
 
-    // 资源限制：防止多任务并发导致系统崩溃
     options {
-        throttleJobProperty(
-            categories: ['heavy_job'],
-            throttleEnabled: true,
-            throttleOption: 'category'
+        // 替换 throttleJobProperty 为 rateLimitBuilds
+        rateLimitBuilds(
+            throttle: [count: 1, durationName: 'hour', userBoost: true]
         )
-        timeout(time: 8, unit: 'HOURS') // Yocto 构建可能耗时数小时
-        buildDiscarder(logRotator(numToKeepStr: '20')) // 保留最近20次构建
+        timeout(time: 8, unit: 'HOURS')
+        buildDiscarder(logRotator(numToKeepStr: '20'))
     }
 
     environment {
