@@ -4,7 +4,7 @@ header:
 machine: raspberrypi4-64
 distro: poky
 target:
-  - update-image
+  - rpi-test-image
 
 repos:
 
