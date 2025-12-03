@@ -8,7 +8,7 @@
 
 # ==================== Update the following path to match your setup ====================
 # Yocto project root directory (parent folder of the "build" directory)
-YOCTO_ROOT="/home/xiaofeng/Workspace/yocto-taishan"
+YOCTO_ROOT="/home/vagrant/workspaces/yocto-taishan"
 # ======================================================================================
 
 # Define key directories (no changes needed for default Yocto structure)
