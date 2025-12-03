@@ -36,7 +36,7 @@ repos:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     branch: scarthgap
-  
+
   meta-swupdate-boards:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
@@ -47,11 +47,12 @@ bblayers_conf_header:
     POKY_BBLAYERS_CONF_VERSION = "2"
 local_conf_header:
   standard: |
+    CENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
     BUILDHISTORY_COMMIT = "1"
     ENABLE_UART = "1"
     RPI_USE_U_BOOT = "1"
     PATCHRESOLVE = "noop"
-    IMAGE_FSTYPES += " ext4.gz"
+    IMAGE_FSTYPES += " ext4.gz wic"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
