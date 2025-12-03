@@ -7,7 +7,6 @@ target:
   - rpi-test-image
 
 repos:
-  # 原有仓库配置不变
   poky:
     url: git@github.com:xiaofeng232/poky.git
     path: layers/poky
@@ -16,7 +15,6 @@ repos:
       meta:
       meta-poky:
       meta-yocto-bsp:
-
   meta-openembedded:
     url: git@github.com:xiaofeng232/meta-openembedded.git
     path: layers/meta-openembedded
@@ -26,39 +24,21 @@ repos:
       meta-python:
       meta-networking:
       meta-perl:
-
   meta-raspberrypi:
     url: git@github.com:xiaofeng232/meta-raspberrypi.git
     path: layers/meta-raspberrypi
     branch: scarthgap
-
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     branch: scarthgap
-
   meta-swupdate-boards:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
     branch: scarthgap
-
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
-    # 关键修复：添加Poky核心层（必须放在最前面，所有其他层依赖它）
-    BBLAYERS += "${TOPDIR}/../layers/poky/meta"
-    BBLAYERS += "${TOPDIR}/../layers/poky/meta-poky"
-    BBLAYERS += "${TOPDIR}/../layers/poky/meta-yocto-bsp"
-    # 添加openembedded元层（依赖Poky核心层）
-    BBLAYERS += "${TOPDIR}/../layers/meta-openembedded/meta-oe"
-    BBLAYERS += "${TOPDIR}/../layers/meta-openembedded/meta-python"
-    BBLAYERS += "${TOPDIR}/../layers/meta-openembedded/meta-networking"
-    BBLAYERS += "${TOPDIR}/../layers/meta-openembedded/meta-perl"
-    # 树莓派层 + swupdate相关层（顺序不变）
-    BBLAYERS += "${TOPDIR}/../layers/meta-raspberrypi"
-    BBLAYERS += "${TOPDIR}/../layers/meta-swupdate"
-    BBLAYERS += "${TOPDIR}/../layers/meta-swupdate-boards"
-
 local_conf_header:
   standard: |
     BUILDHISTORY_COMMIT = "1"
@@ -66,32 +46,8 @@ local_conf_header:
     PATCHRESOLVE = "noop"
     IMAGE_FSTYPES += " ext4.gz wic"
     LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
-
-    # 树莓派4B-64 必需配置
-    PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
-    PREFERRED_VERSION_linux-raspberrypi = "6.1%"
-    IMAGE_INSTALL:append = " raspberrypi-firmware raspberrypi-firmware-bootloader"
-    SERIAL_CONSOLE = "115200 ttyAMA0"
-    RPI_USE_U_BOOT = "1"
-
-    # swupdate 核心配置
-    IMAGE_INSTALL:append = " swupdate swupdate-utils"
-    DISABLE_ROOTFS_RESIZE = "1"
-    SWUPDATE_TARGETS = "mmcblk0"
-    SWUPDATE_IMAGES = "rootfs"
-    SWUPDATE_ROOTFS_PARTITION = "/dev/mmcblk0p2"
-    SWUPDATE_BOOT_PARTITION = "/dev/mmcblk0p1"
-    KERNEL_FEATURES:append = " features/swupdate/swupdate.scc"
-
-    # scarthgap分支兼容配置
-    DISTRO_FEATURES:append = " systemd"
-    VIRTUAL-RUNTIME_init_manager = "systemd"
-    DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
-    VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
-
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
-
   diskmon: |
     BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \

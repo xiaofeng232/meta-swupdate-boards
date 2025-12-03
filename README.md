@@ -46,3 +46,24 @@ bitbake taishan-base-image -c populate_sdk_ext
 
 ## 指定自定义镜像生成SDK
 SDKIMAGE=core-image-full-cmdline ./scripts/Gen-yocto-taishan --sdk
+
+
+
+    PREFERRED_PROVIDER_virtual/kernel = "linux-raspberrypi"
+    PREFERRED_VERSION_linux-raspberrypi = "6.1%"
+    IMAGE_INSTALL:append = " raspberrypi-firmware raspberrypi-firmware-bootloader"
+    SERIAL_CONSOLE = "115200 ttyAMA0"
+    RPI_USE_U_BOOT = "1"
+
+    IMAGE_INSTALL:append = " swupdate swupdate-utils"
+    DISABLE_ROOTFS_RESIZE = "1"
+    SWUPDATE_TARGETS = "mmcblk0"
+    SWUPDATE_IMAGES = "rootfs"
+    SWUPDATE_ROOTFS_PARTITION = "/dev/mmcblk0p2"
+    SWUPDATE_BOOT_PARTITION = "/dev/mmcblk0p1"
+    KERNEL_FEATURES:append = " features/swupdate/swupdate.scc"
+
+    DISTRO_FEATURES:append = " systemd"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
+    VIRTUAL-RUNTIME_initscripts = "systemd-compat-units"
