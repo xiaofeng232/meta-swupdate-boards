@@ -2,7 +2,7 @@
 set -e
 
 # ==================== 配置 ====================
-KAS_FILE="${KAS_FILE:-kas/kas-poky-taishan.yml}"
+KAS_FILE="${KAS_FILE:-kas/kas-poky-swupdate-rpi.yml}"
 KAS_SWU_FILE="${KAS_SWU_FILE:-kas/kas-poky-swupdate.yml}"
 MACHINE="${MACHINE:-raspberrypi4-64}"
 BUILD_DIR="build"

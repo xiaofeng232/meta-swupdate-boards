@@ -40,7 +40,7 @@ repos:
   meta-taishan:
     url: git@github.com:xiaofeng232/meta-taishan.git
     path: layers/meta-taishan
-    branch: scarthgap
+    commit: 35f4a7ec0eaf9a65b85851b8a8de0acf6ac26779
 
 bblayers_conf_header:
   standard: |

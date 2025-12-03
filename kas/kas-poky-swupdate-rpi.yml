@@ -42,6 +42,17 @@ bblayers_conf_header:
 local_conf_header:
   standard: |
     BUILDHISTORY_COMMIT = "1"
+    ENABLE_UART = "1"
+    CONF_VERSION = "2"
+    RPI_USE_U_BOOT = "1"
+    USER_CLASSES ?="buildstats"
+    PATCHRESOLVE = "noop"
+    LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
+    DISTRO_FEATURES:append = " systemd usrmerge"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
+    VIRTUAL-RUNTIME_initscripts = ""
+    IMAGE_FSTYPES += " ext4 ext4.gz wic wic.bz2"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
