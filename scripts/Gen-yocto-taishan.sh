@@ -9,7 +9,7 @@ BUILD_DIR="build"
 
 # SDK 配置
 SDKMACHINE="${SDKMACHINE:-x86_64}"
-SDKIMAGE="${SDKIMAGE:-core-image-minimal}"  # 用于生成 SDK 的镜像名
+SDKIMAGE="${SDKIMAGE:-core-image-base}"  # 用于生成 SDK 的镜像名
 
 # ==================== 主流程 ====================
 pkill -9 -f bitbake || true
