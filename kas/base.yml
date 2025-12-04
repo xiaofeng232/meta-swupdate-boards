@@ -1,12 +1,12 @@
 header:
-  version: 8
+  version: 14
 
 machine: raspberrypi4-64
 distro: poky
-target:
-  - rpi-test-image
+target: rpi-test-image
 
 repos:
+
   poky:
     url: git@github.com:xiaofeng232/poky.git
     path: layers/poky
@@ -15,6 +15,7 @@ repos:
       meta:
       meta-poky:
       meta-yocto-bsp:
+
   meta-openembedded:
     url: git@github.com:xiaofeng232/meta-openembedded.git
     path: layers/meta-openembedded
@@ -24,14 +25,17 @@ repos:
       meta-python:
       meta-networking:
       meta-perl:
+
   meta-raspberrypi:
     url: git@github.com:xiaofeng232/meta-raspberrypi.git
     path: layers/meta-raspberrypi
     commit: cd677051d18d4af2f043ac1ab58509ae5f594cf6
+
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     commit: 43ef322cbf5b91d84b007c343cf73e9b01699594
+
   meta-taishan:
     url: git@github.com:xiaofeng232/meta-taishan.git
     path: layers/meta-taishan
