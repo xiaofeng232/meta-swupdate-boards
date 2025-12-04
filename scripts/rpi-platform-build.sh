@@ -3,7 +3,7 @@ set -e
 
 # ==================== 配置 ====================
 KAS_FILE="${KAS_FILE:-kas/rpi-platform.yml}"
-KAS_SWU_FILE="${KAS_SWU_FILE:-kas/rpi-swupdate.yml}"
+KAS_SWU_FILE="${KAS_SWU_FILE:-kas/rpi-swipdate.yml}"
 MACHINE="${MACHINE:-raspberrypi4-64}"
 BUILD_DIR="build"
 
