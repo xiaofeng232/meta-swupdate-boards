@@ -10,7 +10,7 @@ repos:
   poky:
     url: git@github.com:xiaofeng232/poky.git
     path: layers/poky
-    branch: scarthgap
+    commit: e6bfeed8f3e72c577820e3d01f7d697c4d3fc5d4
     layers:
       meta:
       meta-poky:
@@ -18,7 +18,7 @@ repos:
   meta-openembedded:
     url: git@github.com:xiaofeng232/meta-openembedded.git
     path: layers/meta-openembedded
-    branch: scarthgap
+    commit: 89a01c3d9ad1f8fce6aeb4dd0e694cfa28d42099
     layers:
       meta-oe:
       meta-python:
@@ -27,15 +27,16 @@ repos:
   meta-raspberrypi:
     url: git@github.com:xiaofeng232/meta-raspberrypi.git
     path: layers/meta-raspberrypi
-    branch: scarthgap
+    commit: cd677051d18d4af2f043ac1ab58509ae5f594cf6
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
-    branch: scarthgap
+    commit: 43ef322cbf5b91d84b007c343cf73e9b01699594
   meta-taishan:
     url: git@github.com:xiaofeng232/meta-taishan.git
     path: layers/meta-taishan
-    commit: scarthgap
+    branch: scarthgap
+    
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
