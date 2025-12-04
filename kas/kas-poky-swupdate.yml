@@ -35,7 +35,7 @@ repos:
   meta-taishan:
     url: git@github.com:xiaofeng232/meta-taishan.git
     path: layers/meta-taishan
-    commit: b99eb60f7dad7c5435b0442540ff21a1c33583ff
+    commit: scarthgap
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
