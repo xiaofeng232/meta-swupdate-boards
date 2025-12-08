@@ -36,14 +36,16 @@ repos:
     path: layers/meta-swupdate
     commit: 43ef322cbf5b91d84b007c343cf73e9b01699594
 
-  meta-taishan:
-    url: git@github.com:xiaofeng232/meta-taishan.git
-    path: layers/meta-taishan
-    branch: scarthgap
+  meta-swupdate-boards:
+    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
+    path: layers/meta-swupdate-boards
+    path: scarthgap-dev
 
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
+    BBPATH = "${TOPDIR}"
+    BBFILES ?= ""
 local_conf_header:
   standard: |
     BUILDHISTORY_COMMIT = "1"
@@ -70,6 +72,6 @@ local_conf_header:
         HALT,${DL_DIR},100M,1K \
         HALT,${SSTATE_DIR},100M,1K \
         HALT,/tmp,10M,1K"
-  buildhistory: |
-    INHERIT += "buildhistory"
-    BUILDHISTORY_COMMIT = "1"
+  # buildhistory: |
+  #   INHERIT += "buildhistory"
+  #   BUILDHISTORY_COMMIT = "1"
