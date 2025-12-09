@@ -34,12 +34,12 @@ repos:
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
-    commit: 43ef322cbf5b91d84b007c343cf73e9b01699594
+    branch: scarthgap
 
   meta-swupdate-boards:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
-    path: scarthgap-dev
+    branch: scarthgap-dev
 
 bblayers_conf_header:
   standard: |
