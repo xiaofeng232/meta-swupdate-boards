@@ -3,7 +3,9 @@ header:
 
 machine: raspberrypi4-64
 distro: poky
-target: update-image
+target: 
+  - core-image-full-cmdline
+  - update-image
 
 repos:
 
