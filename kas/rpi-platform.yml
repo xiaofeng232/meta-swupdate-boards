@@ -36,10 +36,10 @@ repos:
     path: layers/meta-swupdate
     commit: 43ef322cbf5b91d84b007c343cf73e9b01699594
 
-  meta-taishan:
-    url: git@github.com:xiaofeng232/meta-taishan.git
-    path: layers/meta-taishan
-    branch: scarthgap
+  # meta-taishan:
+  #   url: git@github.com:xiaofeng232/meta-taishan.git
+  #   path: layers/meta-taishan
+  #   branch: scarthgap
 
 bblayers_conf_header:
   standard: |
