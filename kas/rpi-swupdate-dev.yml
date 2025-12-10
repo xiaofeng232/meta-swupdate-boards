@@ -1,0 +1,16 @@
+header:
+  version: 14
+  includes:  
+    - base.yml
+
+machine: raspberrypi4-64
+distro: poky
+
+target: 
+  - core-image-full-cmdline
+  - update-image
+repos:
+  meta-swupdate-boards:
+    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
+    path: layers/meta-swupdate-boards
+    branch: scarthgap-dev

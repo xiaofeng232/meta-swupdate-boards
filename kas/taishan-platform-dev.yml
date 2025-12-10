@@ -1,0 +1,13 @@
+header:
+  version: 14
+  includes:
+    - rpi-swupdate.yml
+
+machine: raspberrypi4-64
+target: rpi-test-image
+
+repos:
+  meta-taishan:
+    url: git@github.com:xiaofeng232/meta-taishan.git
+    path: layers/meta-taishan
+    branch: scarthgap

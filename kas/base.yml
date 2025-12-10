@@ -1,10 +1,5 @@
 header:
   version: 14
-
-machine: raspberrypi4-64
-distro: poky
-target: rpi-test-image
-
 repos:
 
   poky:
@@ -36,16 +31,12 @@ repos:
     path: layers/meta-swupdate
     commit: 43ef322cbf5b91d84b007c343cf73e9b01699594
 
-  # meta-taishan:
-  #   url: git@github.com:xiaofeng232/meta-taishan.git
-  #   path: layers/meta-taishan
-  #   branch: scarthgap
-
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
     BBPATH = "${TOPDIR}"
     BBFILES ?= ""
+
 local_conf_header:
   standard: |
     BUILDHISTORY_COMMIT = "1"
@@ -54,13 +45,14 @@ local_conf_header:
     RPI_USE_U_BOOT = "1"
     USER_CLASSES ?="buildstats"
     PATCHRESOLVE = "noop"
+    LICENSE_FLAGS_ACCEPTED += "synaptics-killswitch"
     DISTRO_FEATURES:append = " systemd usrmerge"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES_BACKFILL_CONSIDERED:append = "sysvinit"
     VIRTUAL-RUNTIME_initscripts = ""
     IMAGE_FSTYPES += " ext4 ext4.gz wic wic.bz2"
   debug-tweaks: |
-    EXTRA_IMAGE_FEATURES += "debug-tweaks empty-root-password allow-empty-password allow-root-login post-install-logging"
+    EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
     BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \
@@ -71,10 +63,6 @@ local_conf_header:
         HALT,${DL_DIR},100M,1K \
         HALT,${SSTATE_DIR},100M,1K \
         HALT,/tmp,10M,1K"
-  buildhistory: |
-    INHERIT += "buildhistory"
-    BUILDHISTORY_COMMIT = "1"
-  license: |
-    # Uncomment next line to allow the license
-    # See: linux-firmware-rpidistro in docs/ipcompliance.md
-    LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"
+  # buildhistory: |
+  #   INHERIT += "buildhistory"
+  #   BUILDHISTORY_COMMIT = "1"
