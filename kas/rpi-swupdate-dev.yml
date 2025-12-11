@@ -14,3 +14,8 @@ repos:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
     branch: scarthgap-dev
+    
+local_conf_header:
+  package: |
+    PACKAGE_CLASSES = "package_ipk"
+    EXTRA_IMAGE_FEATURES += "package-management"
