@@ -46,3 +46,6 @@ bitbake taishan-base-image -c populate_sdk_ext
 
 ## 指定自定义镜像生成SDK
 SDKIMAGE=core-image-full-cmdline ./scripts/Gen-yocto-taishan --sdk
+## 集成验证
+* SWupdate在线更新软件
+* 断点debug

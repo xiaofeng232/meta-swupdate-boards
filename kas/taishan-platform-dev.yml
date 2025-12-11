@@ -1,7 +1,7 @@
 header:
   version: 14
   includes:
-    - base.yml
+    - rpi-swupdate-dev.yml
 
 machine: raspberrypi4-64
 distro: poky
@@ -11,11 +11,6 @@ target:
   - update-image
 
 repos:
-    meta-swupdate-boards:
-      url: git@github.com:xiaofeng232/meta-swupdate-boards.git
-      path: layers/meta-swupdate-boards
-      branch: scarthgap
-    
     meta-taishan:
       url: git@github.com:xiaofeng232/meta-taishan.git
       path: layers/meta-taishan
