@@ -1,12 +1,11 @@
 # yocto-taishan
+> 用于工业控制、IOT设备以及数据采集终端，采用了yocto定制Linux，开发一个通用控制平台。</br>
 > 这部分为[taishan](https://quip.com/CahROAF7C6bS/06-Taishan)的详细设计文件,[版本变更记录](CHANGELOG.md)记录了版本的变更.</br>
-
+</br>
 [莓派swupdate开发镜像生成配置](./kas/rpi-swupdate-dev.yml)</br>
 [莓派swupdate发布配置](./kas/rpi-swupdate.yml)</br>
 [莓派swupdate平台镜像配置](./kas/taishan-platform-dev.yml)</br>
 
-## Description
-> 用于工业控制、IOT设备以及数据采集终端，采用了yocto定制Linux，开发一个通用控制平台。
 
 ## layers
 * meta-openembedded
