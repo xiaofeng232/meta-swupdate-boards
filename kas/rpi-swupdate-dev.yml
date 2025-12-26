@@ -1,7 +1,7 @@
 header:
   version: 14
-  includes:  
-    - base.yml
+  includes:
+    - kas/base.yml
 
 machine: raspberrypi4-64
 distro: poky
@@ -9,6 +9,7 @@ distro: poky
 target: 
   - rpi-test-image
   - update-image
+
 repos:
   meta-swupdate-boards:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
