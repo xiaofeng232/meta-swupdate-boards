@@ -7,8 +7,6 @@ SRC_URI += " \
     file://swupdate.cfg \
     "
 
-SRC_URI:append:beaglebone-yocto = " file://10-remove-force-ro"
-
 # additional dependencies required to run swupdate on the target
 RDEPENDS:${PN} += "u-boot-fw-utils"
 
