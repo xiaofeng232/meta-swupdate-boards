@@ -5,7 +5,7 @@ PACKAGECONFIG_CONFARGS = ""
 SRC_URI += " \
     file://09-swupdate-args \
     file://swupdate.cfg \
-    "
+"
 
 # additional dependencies required to run swupdate on the target
 RDEPENDS:${PN} += "u-boot-fw-utils"
