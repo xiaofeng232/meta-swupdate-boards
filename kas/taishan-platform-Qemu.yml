@@ -3,12 +3,11 @@ header:
   includes:
     - kas/base.yml
 
-machine: raspberrypi4-64
+machine: qemux86-64
 distro: poky
 
 target: 
-  - rpi-test-image
-  - update-image
+  - core-image-base
 
 repos:
     meta-taishan:
