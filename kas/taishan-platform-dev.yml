@@ -1,14 +1,13 @@
 header:
   version: 14
   includes:
-    - kas/base.yml
+    - kas/rpi-base.yml
 
 machine: raspberrypi4-64
 distro: poky
 
 target: 
   - rpi-test-image
-  - update-image
 
 repos:
     meta-taishan:

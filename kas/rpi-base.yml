@@ -8,23 +8,12 @@ distro: poky
 
 target: 
   - rpi-test-image
-  - update-image
 
 repos:
   meta-raspberrypi:
     url: git@github.com:xiaofeng232/meta-raspberrypi.git
     path: layers/meta-raspberrypi
     commit: cd677051d18d4af2f043ac1ab58509ae5f594cf6
-    
-  meta-swupdate:
-    url: git@github.com:xiaofeng232/meta-swupdate.git
-    path: layers/meta-swupdate
-    commit: 43ef322cbf5b91d84b007c343cf73e9b01699594
-
-  meta-swupdate-boards:
-    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
-    path: layers/meta-swupdate-boards
-    branch: scarthgap-dev
     
 local_conf_header:
   package: |
