@@ -16,6 +16,15 @@ repos:
     branch: scarthgap
     
 local_conf_header:
+  standard: |
+    CONF_VERSION = "2"
+    PACKAGE_CLASSES = "package_rpm"
+    SDKMACHINE = "x86_64"
+    USER_CLASSES = "buildstats"
+    PATCHRESOLVE = "noop"
+    LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"
+  debug-tweaks: |
+    EXTRA_IMAGE_FEATURES = "debug-tweaks"
   package: |
     PACKAGE_CLASSES = "package_ipk"
     EXTRA_IMAGE_FEATURES += "package-management"
