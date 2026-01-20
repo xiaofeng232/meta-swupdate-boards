@@ -17,31 +17,12 @@
 * meta-taishan
 
 ## SDK生成
-* bitbake taishan-base-image -c populate_sdk
-* bitbake taishan-base-image -c populate_sdk_ext
-
-## Scripts
-### 基础构建（不生成SDK）
 ```shell
-./scripts/Gen-yocto-taishan
+kas-container build ./kas/taishan-platform-dev.yml -c populate_sdk
+kas-container build ./kas/taishan-platform-dev.yml -c populate_sdk_ext
 ```
 
-### 增量构建并生成SDK
-```shell
-./scripts/Gen-yocto-taishan --sdk
-```
-### 清理后构建并生成SDK
-```shell
-./scripts/Gen-yocto-taishan --clean --sdk
-```
-### 仅清理sstate并生成SDK
-```shell
-./scripts/Gen-yocto-taishan --cleansstate --sdk
-```
-### 指定自定义镜像生成SDK
-```shell
-SDKIMAGE=core-image-full-cmdline ./scripts/Gen-yocto-taishan --sdk
-```
+
 ## 功能开发与集成验证
 * 生成镜像[👌]
 * SWupdate在线更新软件
