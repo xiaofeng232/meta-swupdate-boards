@@ -3,11 +3,11 @@ header:
   includes:
     - kas/rpi-base.yml
 
-machine: qemux86-64
-distro: poky
+machine: qemuarm64
+distro: taishan
 
 target: 
-  - core-image-base
+  - core-image-taishan-qemu
 
 repos:
     meta-taishan:

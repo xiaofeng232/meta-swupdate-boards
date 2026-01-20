@@ -1,19 +1,5 @@
-# change log
-----
+# Taishan Layer Changelog
 
-## 1.0
-Branch: `scarthgap`
-
-### yocto-taishan
-
-#### Changed
-- [Enabled]
-
-### meta-nilrt
-
-
-#### Added
-- [Added]additional kernel modules to feeds.
-
-#### Changed
-- [Upgraded]xxxx
+## [0.0.1-rt1] - 2026-01-19
+### Changed
+- Switch INIT_MANAGER from sysvinit to systemd

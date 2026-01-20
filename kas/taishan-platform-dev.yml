@@ -7,7 +7,7 @@ machine: raspberrypi4-64
 distro: taishan
 
 target: 
-  - rpi-test-image
+  - core-image-taishan
 
 repos:
     meta-taishan:
