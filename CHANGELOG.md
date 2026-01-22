@@ -7,16 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2026-01-22
 
-### Added
+### Added 
 
-- Arabic translation (#444).
-### Fixed
-
-- Improve French translation (#377).
+- 新添加的功能。
 ### Changed
 
-- Upgrade dependencies: Ruby 3.2.1, Middleman, etc.
+- 对现有功能的变更。
+### Deprecated 
 
+- 已经不建议使用，即将移除的功能。
 ### Removed
 
-- Unused normalize.css file.
+- 已经移除的功能。
+### Fixed 
+
+- 对 bug 的修复。
+### Security 
+
+- 对安全性的改进。
