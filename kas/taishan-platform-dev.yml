@@ -2,6 +2,7 @@ header:
   version: 14
   includes:
     - kas/rpi-base.yml
+    - kas/rpi-swupdate-dev.yml
 
 machine: raspberrypi4-64
 distro: taishan
