@@ -20,6 +20,7 @@ repos:
       url: git@github.com:xiaofeng232/meta-swupdate-boards.git
       path: layers/meta-swupdate-boards
       branch: scarthgap
+      
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate

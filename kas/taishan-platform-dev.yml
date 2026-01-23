@@ -2,7 +2,6 @@ header:
   version: 14
   includes:
     - kas/rpi-base.yml
-    - kas/rpi-swupdate-dev.yml
 
 machine: raspberrypi4-64
 distro: taishan
@@ -10,8 +9,8 @@ distro: taishan
 target: 
   - core-image-taishan
 
-repos:
-    meta-taishan:
-      url: git@github.com:xiaofeng232/meta-taishan.git
-      path: layers/meta-taishan
-      branch: scarthgap
+repos:    
+  meta-taishan:
+    url: git@github.com:xiaofeng232/meta-taishan.git
+    path: layers/meta-taishan
+    branch: scarthgap
