@@ -4,7 +4,7 @@ header:
     - kas/rpi-base-dev.yml
     - kas/swupdate-dev.yml
 
-machine: raspberrypi4-64-taishan
+machine: raspberrypi4-64
 distro: taishan
 
 target: 
