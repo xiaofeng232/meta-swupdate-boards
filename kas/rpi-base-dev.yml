@@ -13,7 +13,7 @@ repos:
   meta-raspberrypi:
     url: git@github.com:xiaofeng232/meta-raspberrypi.git
     path: layers/meta-raspberrypi
-    branch: scarthgap
+    commit: 2c646d29912dcc873469a57b1c207e1549c5094d
     
 local_conf_header:
   standard: |
