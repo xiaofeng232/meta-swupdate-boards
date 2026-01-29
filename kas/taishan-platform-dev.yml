@@ -10,7 +10,12 @@ distro: taishan
 target: 
   - core-image-taishan
 
-repos:    
+repos:  
+  meta-swupdate:
+    url: git@github.com:xiaofeng232/meta-swupdate.git
+    path: layers/meta-swupdate
+    commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9  
+    
   meta-taishan:
     url: git@github.com:xiaofeng232/meta-taishan.git
     path: layers/meta-taishan
