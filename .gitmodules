@@ -1,0 +1,15 @@
+[submodule "layers/meta-taishan"]
+	path = layers/meta-taishan
+	url = git@github.com:xiaofeng232/meta-taishan.git
+[submodule "layers/meta-swupdate"]
+	path = layers/meta-swupdate
+	url = git@github.com:xiaofeng232/meta-swupdate.git
+[submodule "layers/meta-raspberrypi"]
+	path = layers/meta-raspberrypi
+	url = git@github.com:xiaofeng232/meta-raspberrypi.git
+[submodule "layers/meta-openembedded"]
+	path = layers/meta-openembedded
+	url = git@github.com:xiaofeng232/meta-openembedded.git
+[submodule "layers/poky"]
+	path = layers/poky
+	url = git@github.com:xiaofeng232/poky.git
