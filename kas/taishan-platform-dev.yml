@@ -3,7 +3,7 @@ header:
   includes:
     - kas/rpi-base-dev.yml
 
-machine: raspberrypi4-64
+machine: raspberrypi4-64-taishan
 distro: taishan
 
 target: 
