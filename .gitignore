@@ -6,6 +6,5 @@ build*
 *.log
 docs/_build
 *.pyc
-layers*
 .vscode
 .kas_shell_history

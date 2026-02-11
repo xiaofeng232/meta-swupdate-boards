@@ -20,6 +20,7 @@ repos:
       meta-python:
       meta-networking:
       meta-perl:
+      meta-filesystems:
 
 bblayers_conf_header:
   standard: |
