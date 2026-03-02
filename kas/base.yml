@@ -29,6 +29,9 @@ bblayers_conf_header:
     BBFILES ?= ""
 
 local_conf_header:
+  shared_dirs: |
+    DL_DIR ?= "/work/build/downloads"
+    SSTATE_DIR ?= "/work/build/sstate-cache"
   diskmon: |
     BB_DISKMON_DIRS ??= "\
         STOPTASKS,${TMPDIR},1G,100K \

@@ -1,0 +1,7 @@
+local_conf_header:
+  raspberrypi_swupdate: |
+    RPI_USE_U_BOOT = "1"
+    IMAGE_FSTYPES = "wic ext4.gz"
+    PREFERRED_PROVIDER_u-boot-fw-utils = "libubootenv"
+    IMAGE_INSTALL:append = " swupdate swupdate-www"
+    WKS_FILE = "taishan-sd-layout.wks"

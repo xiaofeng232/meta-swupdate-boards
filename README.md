@@ -17,8 +17,8 @@
 ## SDK生成
 
 ```shell
-kas-container build ./kas/taishan-platform-dev.yml -c populate_sdk
-kas-container build ./kas/taishan-platform-dev.yml -c populate_sdk_ext
+kas-container build ./taishan-platform-dev.yml -c populate_sdk
+kas-container build ./taishan-platform-dev.yml -c populate_sdk_ext
 ```
 
 

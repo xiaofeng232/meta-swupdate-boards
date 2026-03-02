@@ -2,6 +2,7 @@ header:
   version: 14
   includes:
     - kas/rpi-base-dev.yml
+    - kas/rpi-swupdate.yml
 
 machine: raspberrypi4-64-taishan
 distro: taishan
@@ -25,5 +26,4 @@ local_conf_header:
     IMAGE_INSTALL:append = " swupdate swupdate-www swupdate-tools u-boot-fw-utils"
     PACKAGECONFIG:append:pn-swupdate = " json mongoose"
     SWUPDATE_BOOTLOADER = "u-boot"
-    WKS_FILE = "sd-ab-layout.wks"
     IMAGE_FSTYPES:append = " wic.gz wic.bmap ext4.gz"
