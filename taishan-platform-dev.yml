@@ -11,19 +11,8 @@ target:
   - core-image-taishan
 
 repos:  
-  meta-swupdate:
-    url: git@github.com:xiaofeng232/meta-swupdate.git
-    path: layers/meta-swupdate
-    commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9  
-    
   meta-taishan:
     url: git@github.com:xiaofeng232/meta-taishan.git
     path: layers/meta-taishan
     branch: scarthgap
     
-local_conf_header:
-  swupdate: |
-    IMAGE_INSTALL:append = " swupdate swupdate-www swupdate-tools u-boot-fw-utils"
-    PACKAGECONFIG:append:pn-swupdate = " json mongoose"
-    SWUPDATE_BOOTLOADER = "u-boot"
-    IMAGE_FSTYPES:append = " wic.gz wic.bmap ext4.gz"
