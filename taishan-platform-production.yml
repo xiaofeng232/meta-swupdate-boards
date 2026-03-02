@@ -2,16 +2,8 @@ header:
   version: 14
   includes:
     - kas/rpi-base-dev.yml
-    - kas/swupdate-dev.yml
 
 machine: raspberrypi4-64
-distro: taishan
 
-target: 
-  - core-image-taishan
-
-repos:    
-  meta-taishan:
-    url: git@github.com:xiaofeng232/meta-taishan.git
-    path: layers/meta-taishan
-    commit: 5e9b3242e1092f251c3ffdb9c067df3a5a3090e9
+target:
+  - rpi-test-image
