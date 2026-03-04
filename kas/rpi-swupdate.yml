@@ -1,6 +1,8 @@
 header:
   version: 14
-  
+
+target:
+  - update-image
 repos:  
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
