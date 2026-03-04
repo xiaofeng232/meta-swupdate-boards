@@ -2,9 +2,10 @@ header:
   version: 14
   includes:
     - kas/rpi-base-dev.yml
+    - kas/rpi-swupdate.yml
 
 machine: raspberrypi4-64
+distro: poky
 
 target:
-  - rpi-test-image
-  - kas/rpi-swupdate.yml
+  - core-image-minimal

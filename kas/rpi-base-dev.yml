@@ -3,9 +3,6 @@ header:
   includes:
     - kas/base.yml
 
-machine: raspberrypi4-64
-distro: poky
-
 repos:
   meta-raspberrypi:
     url: git@github.com:xiaofeng232/meta-raspberrypi.git
@@ -25,4 +22,3 @@ local_conf_header:
   package: |
     PACKAGE_CLASSES = "package_ipk"
     EXTRA_IMAGE_FEATURES += "package-management"
-    
