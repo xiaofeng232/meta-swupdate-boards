@@ -10,7 +10,7 @@ repos:
   meta-swupdate-boards:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
-    commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9  
+    commit: fbc9c61e298f6bd186942837437a340e6d18b79c  
 
 
 local_conf_header:
