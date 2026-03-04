@@ -22,8 +22,10 @@ local_conf_header:
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
     LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"
+    IMAGE_FSTYPES += " wic.bz2"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   package: |
     PACKAGE_CLASSES = "package_ipk"
     EXTRA_IMAGE_FEATURES += "package-management"
+    
