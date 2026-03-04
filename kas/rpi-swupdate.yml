@@ -8,13 +8,16 @@ repos:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9
-    
+
 local_conf_header:
   raspberrypi_swupdate: |
     RPI_USE_U_BOOT = "1"
     IMAGE_FSTYPES = "wic ext4.gz wic.bz2"
     PREFERRED_PROVIDER_u-boot-fw-utils = "libubootenv"
     IMAGE_INSTALL:append = " swupdate swupdate-www swupdate-tools"
-    DISTRO_FEATURES:append = " systemd usrmerge"
+    RDEPENDS:swupdate-image:remove = "sysvinit"
+    RDEPENDS:swupdate-image:append = "systemd systemd-sysvcompat"
+    DISTRO_FEATURES:append = " systemd"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES:remove = "sysvinit"
+    IMAGE_INSTALL:append = " swupdate swupdate-tools swupdate-systemd"
