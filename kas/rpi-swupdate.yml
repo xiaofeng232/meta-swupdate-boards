@@ -10,7 +10,7 @@ repos:
   meta-swupdate-boards:
     url: git@github.com:xiaofeng232/meta-swupdate-boards.git
     path: layers/meta-swupdate-boards
-    commit: fbc9c61e298f6bd186942837437a340e6d18b79c  
+    branch: scarthgap
 
 
 local_conf_header:
