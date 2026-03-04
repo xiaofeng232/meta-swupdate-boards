@@ -5,7 +5,13 @@ repos:
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
+    commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9 
+
+  meta-swupdate-boards:
+    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
+    path: layers/meta-swupdate-boards
     commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9  
+
 
 local_conf_header:
   raspberrypi_swupdate: |
@@ -13,4 +19,3 @@ local_conf_header:
     IMAGE_FSTYPES = "wic ext4.gz"
     PREFERRED_PROVIDER_u-boot-fw-utils = "libubootenv"
     IMAGE_INSTALL:append = " swupdate swupdate-www"
-    WKS_FILE = "taishan-sd-layout.wks"
