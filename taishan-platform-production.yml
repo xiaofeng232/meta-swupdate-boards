@@ -7,3 +7,4 @@ machine: raspberrypi4-64
 
 target:
   - rpi-test-image
+  - kas/rpi-swupdate.yml
