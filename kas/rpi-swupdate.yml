@@ -8,19 +8,13 @@ repos:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9
-
-  meta-swupdate-boards:
-    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
-    path: layers/meta-swupdate-boards
-    branch: scarthgap-dev
-
-
+    
 local_conf_header:
   raspberrypi_swupdate: |
     RPI_USE_U_BOOT = "1"
-    IMAGE_FSTYPES = "wic ext4.gz"
+    IMAGE_FSTYPES = "wic ext4.gz wic.bz2"
     PREFERRED_PROVIDER_u-boot-fw-utils = "libubootenv"
-    IMAGE_INSTALL:append = " swupdate swupdate-www"
+    IMAGE_INSTALL:append = " swupdate swupdate-www swupdate-tools"
     DISTRO_FEATURES:append = " systemd usrmerge"
     VIRTUAL-RUNTIME_init_manager = "systemd"
     DISTRO_FEATURES:remove = "sysvinit"

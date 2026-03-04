@@ -8,4 +8,4 @@ machine: raspberrypi4-64
 distro: poky
 
 target:
-  - core-image-minimal
+  - rpi-test-image

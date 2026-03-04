@@ -13,6 +13,3 @@
 [submodule "layers/poky"]
 	path = layers/poky
 	url = git@github.com:xiaofeng232/poky.git
-[submodule "layers/meta-swupdate-boards"]
-	path = layers/meta-swupdate-boards
-	url = git@github.com:xiaofeng232/meta-swupdate-boards.git
