@@ -1,6 +1,3 @@
-[submodule "layers/meta-taishan"]
-	path = layers/meta-taishan
-	url = git@github.com:xiaofeng232/meta-taishan.git
 [submodule "layers/meta-swupdate"]
 	path = layers/meta-swupdate
 	url = git@github.com:xiaofeng232/meta-swupdate.git
