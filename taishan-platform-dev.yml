@@ -4,8 +4,7 @@ header:
     - kas/rpi-base-dev.yml
     - kas/rpi-swupdate.yml
 
-machine: raspberrypi4-64-taishan
-distro: taishan
+machine: taishan-64
 
 target: 
   - core-image-taishan
@@ -15,3 +14,15 @@ repos:
     path: ./
     layers:
       meta-taishan:
+
+local_conf_header:
+  taishan-64: |
+    IMAGE_FEATURES:append = " read-only-rootfs"
+    IMAGE_FEATURES:remove = " splash x11 wayland"
+    IMAGE_INSTALL:append = " \
+        swupdate swupdate-www swupdate-tools \
+        i2c-tools spi-tools can-utils \
+        watchdog networkmanager \
+    "
+    IMAGE_FSTYPES = "wic wic.bz2 wic.bmap ext4.gz"
+    IMAGE_ROOTFS_SIZE = "3145728"
