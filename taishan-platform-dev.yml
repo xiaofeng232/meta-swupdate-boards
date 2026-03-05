@@ -12,5 +12,6 @@ target:
 
 repos:  
   meta-taishan:
-    path: meta-taishan
-    
+    path: ./
+    layers:
+      meta-taishan:
