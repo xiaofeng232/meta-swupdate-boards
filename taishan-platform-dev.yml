@@ -12,7 +12,5 @@ target:
 
 repos:  
   meta-taishan:
-    url: git@github.com:xiaofeng232/meta-taishan.git
-    path: layers/meta-taishan
-    branch: dev/xiaofeng/scarthgap
+    path: meta-taishan
     
