@@ -3,6 +3,10 @@ header:
   includes:
     - kas/base.yml
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3f58add (refactor: remove machine and distro specifications from rpi-base-dev.yml)
 repos:
   meta-raspberrypi:
     url: git@github.com:xiaofeng232/meta-raspberrypi.git
