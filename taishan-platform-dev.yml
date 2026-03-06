@@ -5,7 +5,6 @@ header:
     - kas/rpi-swupdate.yml
 
 machine: raspberrypi4-64
-distro: poky
 
 target:
   - rpi-test-image

@@ -1,20 +1,23 @@
 header:
   version: 14
-  
+
 repos:
   meta-swupdate:
     url: git@github.com:xiaofeng232/meta-swupdate.git
     path: layers/meta-swupdate
     commit: 226701adf0f7c8ed08d4d6a7783e88d34ef2d5e9
+    
+  meta-swupdate-boards:
+    url: git@github.com:xiaofeng232/meta-swupdate-boards.git
+    path: layers/meta-swupdate-boards
+    commit: fbc9c61e298f6bd186942837437a340e6d18b79c
+
 
 local_conf_header:
   raspberrypi_swupdate: |
     RPI_USE_U_BOOT = "1"
-    IMAGE_INSTALL:append = " libubootenv"
-    IMAGE_FSTYPES = "wic ext4.gz wic.bz2"
-    INIT_MANAGER = "systemd"
-    IMAGE_INSTALL:append = " \
-    swupdate \
-    swupdate-www \
-    swupdate-tools \
-    "
+    DISTRO_FEATURES += "usrmerge systemd"
+    DISTRO_FEATURES_BACKFILL_CONSIDERED += "sysvinit"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    VIRTUAL-RUNTIME_initscripts = ""
+    IMAGE_FSTYPES += "wic wic.bz2 ext4.gz"
