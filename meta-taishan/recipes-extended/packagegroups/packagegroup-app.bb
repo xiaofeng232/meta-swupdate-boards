@@ -7,5 +7,5 @@ PACKAGE_ARCHS = "${MACHINE_ARCH}"
 inherit packagegroup
 
 RDEPENDS:{PN} += "\
-            helloworld \
+        helloworld \
     "

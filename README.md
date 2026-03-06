@@ -5,6 +5,7 @@
 
 [设计文档](https://quip.com/CahROAF7C6bS/Taishan)记录开发过程</br>
 [版本变更记录](CHANGELOG.md)记录了版本的变更.</br>
+[LVMakerHub](https://github.com/LVMakerHub)
 
 
 ## layers
@@ -35,5 +36,5 @@ kas-container build ./taishan-platform-dev.yml -c populate_sdk_ext
 
 ### Docker生成rpi-swupdate-dev镜像
 ```shell
-kas-container build ./kas/rpi-swupdate-dev.yml 
+kas-container build ./kas/rpi-swupdate-dev.yml
 ```
